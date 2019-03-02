@@ -146,6 +146,7 @@ guser() {
 }
 
 gupdate() {
+  git fetch;
   current_branch=$(git symbolic-ref --short -q HEAD);
   git checkout -b tmp
   git branch -D $current_branch;
