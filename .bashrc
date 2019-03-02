@@ -144,3 +144,11 @@ guser() {
       ;;
   esac
 }
+
+gupdate() {
+  current_branch=$(git symbolic-ref --short -q HEAD);
+  git checkout -b tmp
+  git branch -D $current_branch;
+  git checkout $current_branch
+  git branch -D tmp;
+}
