@@ -142,6 +142,10 @@ guser() {
       git config user.email "gallardo91_@hotmail.com";
       git config user.name "Sergio Gallardo Sales";
       ;;
+     ikein)
+      git config user.email "ikeinyyo@outlook.com";
+      git config user.name "Sergio Gallardo Sales";
+      ;;
   esac
 }
 
@@ -152,4 +156,8 @@ gupdate() {
   git branch -D $current_branch;
   git checkout $current_branch
   git branch -D tmp;
+}
+
+glock() {
+  git update-index --assume-unchanged $1
 }
