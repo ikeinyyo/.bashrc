@@ -10,6 +10,7 @@
 
 - az: alias de `az` para usarlo con `git bash`
 - conda: configuración de conda para usarlo con `git bash`
+- docker: comandos para agilizar el uso de docker en consola
 - goto: herramienta para moverse en el árbol de directorios
 - git: comandos para agilizar el uso de git en consola
 
