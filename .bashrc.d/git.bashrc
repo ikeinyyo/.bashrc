@@ -1,12 +1,12 @@
 gclean() {
   if [ $# = 0 ]; then
-    git fetch
-    git branch -D "develop"
-    git checkout "develop"
+    git fetch origin
+    git branch -D "main"
+    git checkout --track origin/main
   elif [ $# = 1 ]; then
-    git fetch
-    git branch -D $1
-    git checkout $1
+    git fetch origin
+    git branch -D $1 || true
+    git checkout --track origin/$1
   else
     git fetch $1
     git branch -D $2 || true
@@ -28,12 +28,14 @@ gbclean() {
 }
 
 gsquash() {
-  git fetch
   if [ $# = 0 ]; then
-    git rebase -i origin/develop
+    git fetch origin
+    git rebase -i origin/main
   elif [ $# = 1 ]; then
-    git rebase -i "origin/"$1
+    git fetch origin
+    git rebase -i origin/$1
   else
+    git fetch $1
     git rebase -i $1/$2
   fi
 }
@@ -76,10 +78,16 @@ guser() {
 }
 
 gupdate() {
-  git fetch
+  if [ $# = 0 ]; then
+    git fetch origin
+  else
+    git fetch $1
+  fi
+
   current_branch=$(git symbolic-ref --short -q HEAD)
   git checkout -b tmp
   git branch -D $current_branch
+
   if [ $# = 0 ]; then
     git checkout --track origin/$current_branch
   else
